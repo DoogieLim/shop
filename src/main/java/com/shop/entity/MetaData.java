@@ -15,8 +15,9 @@ import javax.persistence.*;
 @ToString
 @NoArgsConstructor
 public class MetaData extends Common {
-  @Column(name="meta_item_uid")
-  private Long metaItemId;        // 아이템ID
+  @ManyToOne
+  @JoinColumn(name="meta_item_id")
+  private MetaItem metaItem;        // 아이템ID
   
   @Column(name="service_uid")
   private Long serviceId;         // 서비스ID

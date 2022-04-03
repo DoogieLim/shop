@@ -18,8 +18,9 @@ public class MetaItem extends Common {
   @Column(name="item_type")
   private String itemType;      // 아이템 타입
 
-  @Column(name="meta_group_uid")
-  private Long metaGroupId;     // 그룹아이디
+  @ManyToOne
+  @JoinColumn(name="meta_group_uid")
+  private MetaGroup metaGroup;     // 그룹아이디
 
   @Column(name="item_name")
   private String itemName;      // 아이템명

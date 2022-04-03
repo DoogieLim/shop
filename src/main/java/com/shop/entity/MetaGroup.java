@@ -8,6 +8,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="pr_meta_group")
@@ -30,4 +31,7 @@ public class MetaGroup extends Common {
     @Column(name="is_deleted")
     @Enumerated(EnumType.STRING)
     private TrueFalse isDeleted;        // 삭제여부
+
+    @OneToMany(mappedBy = "metaGroup")
+    private List<MetaItem> metaItem;     // 그룹아이디
 }

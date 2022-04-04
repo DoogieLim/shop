@@ -42,11 +42,42 @@ public class ThymeleafExController
     }
 
   @GetMapping(value = "/ex03")
-  public String thymeleafExample03(Model model,
-                                   @PageableDefault(page=0, size=10, sort="id", direction= Sort.Direction.DESC) Pageable pageable) {
-    Page<ItemDto> itemDtoPage = itemService.getItemPage(pageable);
-//    model.addAttribute("items", itemDtoPage);
-//    return "thymeleafEx/thymeleafEx03";
-    return itemDtoPage.toString();
+  public String thymeleafExample03(Model model) {
+    List<ItemDto> itemDtoList = new ArrayList<>();
+    for(int i=1;i<10;i++) {
+      ItemDto itemDto = new ItemDto();
+      itemDto.setItemDetail("상품 상세 설명"+i);
+      itemDto.setItemNm("테스트 상품"+i);
+      itemDto.setPrice(1000*i);
+      itemDto.setRegTime(LocalDateTime.now());
+      itemDtoList.add(itemDto);
+    }
+    model.addAttribute("itemDtoList", itemDtoList);
+    return "thymeleafEx/thymeleafEx03";
+  }
+
+  @GetMapping(value = "/ex04")
+  public String thymeleafExample04(Model model) {
+    List<ItemDto> itemDtoList = new ArrayList<>();
+    for(int i=1;i<10;i++) {
+      ItemDto itemDto = new ItemDto();
+      itemDto.setItemDetail("상품 상세 설명"+i);
+      itemDto.setItemNm("테스트 상품"+i);
+      itemDto.setPrice(1000*i);
+      itemDto.setRegTime(LocalDateTime.now());
+      itemDtoList.add(itemDto);
+    }
+    model.addAttribute("itemDtoList", itemDtoList);
+    return "thymeleafEx/thymeleafEx04";
+  }
+
+  @GetMapping(value = "/ex05")
+  public String thymeleafExample05(Model model) {
+    return "thymeleafEx/thymeleafEx05";
+  }
+
+  @GetMapping(value = "/ex07")
+  public String thymeleafExample07(Model model) {
+    return "thymeleafEx/thymeleafEx07";
   }
 }

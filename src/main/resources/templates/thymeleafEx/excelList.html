@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+<body>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">그룹_ID</th>
+      <th scope="col">그룹타입</th>
+      <th scope="col">이름</th>
+      <th scope="col">설명</th>
+      <th scope="col">산제여부</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="data,index : ${datas}" >
+       <td th:text="${index.index}"></td>
+      <td scope="row" th:text="${data.groupType}"></td>
+      <td th:text="${data.groupName}"></td>
+      <td th:text="${data.description}"></td>
+      <td th:text="${data.isDeleted}"></td>
+     </tr>
+    </tbody>
+  </table>
+</body>
+</html>

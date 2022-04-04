@@ -27,7 +27,7 @@ class ImageRepositoryTest {
     ImageRepository imageRepository;
 
     @Test
-    @Order(1)
+
     @DisplayName("상품 저장 테스트")
     public void createImageTest() {
         Image Image = new Image();

@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.shop.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 
@@ -23,6 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
+    http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
     http.formLogin()
             .loginPage("/members/login")
             .defaultSuccessUrl("/")

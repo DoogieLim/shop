@@ -12,9 +12,4 @@ public class ShopApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ShopApplication.class, args);
 	}
-
-	@GetMapping(value = "/")
-	public String Hello() {
-		return "테스트";
-	}
 }

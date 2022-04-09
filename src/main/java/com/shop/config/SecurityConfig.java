@@ -11,7 +11,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.shop.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 
@@ -24,7 +23,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
     http.formLogin()
             .loginPage("/members/login")
             .defaultSuccessUrl("/")
@@ -42,8 +40,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .anyRequest().authenticated()
     ;
 
-//    http.exceptionHandling()
-//            .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
+    http.exceptionHandling()
+            .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
     ;
   }
 
@@ -52,11 +50,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     return new BCryptPasswordEncoder();
   }
 
-//  @Override
-//  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//    auth.userDetailsService(memberService)
-//            .passwordEncoder(passwordEncoder());
-//  }
+  @Override
+  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    auth.userDetailsService(memberService)
+            .passwordEncoder(passwordEncoder());
+  }
 
   @Override
   public void configure(WebSecurity web) throws Exception {

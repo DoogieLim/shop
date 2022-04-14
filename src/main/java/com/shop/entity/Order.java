@@ -13,13 +13,13 @@ import java.util.List;
 @Table(name="orders")
 @Getter
 @Setter
-public class Order {
+public class Order extends BaseEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name="order_id")
   private Long id;
 
-  @ManyToOne(fetch = FetchType.EAGER)
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "member_id")
   private Member member;
 
@@ -29,7 +29,7 @@ public class Order {
   private OrderStatus orderStatus;
 
   @OneToMany(mappedBy = "order", cascade = CascadeType.ALL
-          , orphanRemoval = true, fetch = FetchType.EAGER)
+          , orphanRemoval = true, fetch = FetchType.LAZY)
   private List<OrderItem> orderItems = new ArrayList<>();
 
   private LocalDateTime regTime;
